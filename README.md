@@ -14,7 +14,7 @@
 
 * **Modular DI Architecture:** Built on Google Guice 7 (`RRAppModule`) with clear separation of configuration, networking, and persistence.
 * **Resilient Enterprise Networking:** Uses Apache HttpClient 5 with connection pooling, Preemptive Basic Auth, and wire-level tracing.
-* **Exponential Backoff with Jitter:** Configurable retry strategy (`properties.yaml`) to handle transient network issues without thundering-herd effects.
+* **Exponential Backoff with Jitter:** Configurable retry strategy (`properties.yaml`) to handle transient network failures without thundering-herd effects. Calculates the base delay as `currentInterval = initial_timeout_ms * multiplier^(attempt - 1)`, applies uniform random jitter within `[-delta, +delta]` via `ThreadLocalRandom.current().nextDouble(-delta, delta)` (where `delta = currentInterval * randomization_factor`), and clamps the final delay within `[0, max_timeout_ms]`.
 * **Dynamic SSL Certificate Management:** Features `CertUpdater` and `KeyStoreManager` to synchronize remote certificate chains with the local JVM truststore.
 * **Pluggable Authentication:** Supports `basic`, static `token`, `oauth2` (Client Credentials Grant with token caching), and `none` schemes.
 * **Metadata Filtering & Stream Deduplication:** Custom `RR_DataDeserializer` filters payloads by equipment classifier codes and deduplicates composite keys via Java Streams.
