@@ -6,7 +6,7 @@
 
 ## Overview
 
-**RepairRequests** (`Jackson_RepairRequests`) is a modular Java 17+ command-line ETL utility built on **Apache Maven** and **Google Guice 7**. It automates fetching, filtering, deduplicating, and staging repair request records from 1C:TOiR into MS SQL Server, generating execution summaries in YAML and standard OS exit codes.
+**RepairRequests** (`RepairRequests`) is a modular Java 17+ command-line ETL utility built on **Apache Maven** and **Google Guice 7**. It automates fetching, filtering, deduplicating, and staging repair request records from 1C:TOiR into MS SQL Server, generating execution summaries in YAML and standard OS exit codes.
 
 ---
 
@@ -38,7 +38,7 @@ The project uses a decoupled shared-dependency model to eliminate redundancy:
 ```text
 shared-environment-root/
 ├── dependencies/          # Shared runtime external libraries (.jar)
-└── Jackson_RepairRequests/ # Application root directory
+└── RepairRequests/        # Application root directory
     ├── config/ | exchange/ | logs/ | src/ | target/ | pom.xml
 ```
 ---
@@ -46,7 +46,7 @@ shared-environment-root/
 ## 📂 Project Structure
 
 ```text
-Jackson_RepairRequests/
+RepairRequests/
 ├── config/
 │   ├── Hibernate.cfg.xml.dist         # Hibernate & MS SQL database connection template
 │   └── properties.yaml.dist           # TOiR API endpoint, equipment codes, timeouts, retry & auth template
@@ -184,7 +184,7 @@ Jackson_RepairRequests/
      ```
    * **With Custom Log Directory:** Override default trace destinations (`commons.log` and `p6spy.log`) using `-Dlog.dir`:
      ```bash
-     java -Dlog.dir=/var/log/Jackson_RepairRequests -jar /path/to/Jackson_RepairRequests-0.0.1-SNAPSHOT.jar
+     java -Dlog.dir=/var/log/RepairRequests -jar /path/to/Jackson_RepairRequests-0.0.1-SNAPSHOT.jar
      ```
 
 ---
